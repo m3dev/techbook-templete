@@ -1,0 +1,21 @@
+{
+  "rules": {
+    "preset-ja-technical-writing": {
+      "no-exclamation-question-mark": false,
+    },
+    "spellcheck-tech-word": true,
+    "preset-japanese": true,
+    "preset-jtf-style": true,
+  },
+  "filters": {
+    "comments": true,
+    "whitelist": {
+      "allow": [
+        "/# .*/"
+      ]
+    }
+  },
+  "plugins": [
+    "review"
+  ]
+}

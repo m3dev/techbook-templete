@@ -1,0 +1,98 @@
+version: 2
+jobs:
+  lint:
+    working_directory: /work
+    docker:
+      - image: node:10
+    steps:
+      - checkout
+      - run:
+          name: Setup Node Packages
+          command: |
+            yarn upgrade
+      - run:
+          name: Create Result URL File
+          command: |
+            touch result.txt
+            echo "Lint結果: ${CIRCLE_BUILD_URL}" >> result.txt
+      - run:
+          name: Textlint
+          command: |
+            set +eo pipefail
+            npx textlint **/*.re 2>&1 | tee -a textlint.log
+      - persist_to_workspace:
+          root: /work
+          paths:
+            - 'result.txt'
+            - 'textlint.log'
+      - store_artifacts:
+          path: /work/textlint.log
+
+  build:
+    working_directory: /work
+    docker:
+      - image: vvakame/review:5.1
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /work
+      - run:
+          name: Add Job URL
+          command: |
+            echo "PDF: ${CIRCLE_BUILD_URL}" >> result.txt
+      - run:
+          name: Build PDF
+          command: cd src && review-pdfmaker config.yml
+      - run:
+          name: Notify Failure To Slack 
+          command: >-
+            curl -X POST \
+              --data-urlencode \
+              "payload={\"channel\":\"#techbook-ci\", \
+                \"username\": \"テックブックBot\", \
+                \"text\": \"${CIRCLE_BRANCH}のビルドが失敗しました。\\n ${CIRCLE_BUILD_URL}\", \
+                \"icon_emoji\": \":robot_face:\" \
+              }" \
+              https://hooks.slack.com/services/~~~ && exit 1
+          when: on_fail
+      - persist_to_workspace:
+          root: /work
+          paths:
+            - 'result.txt'
+            - '*.pdf'
+      - store_artifacts:
+          path: '/work/src/techbook.pdf'
+
+  notify_success:
+    working_directory: /work
+    docker:
+      - image: debian:stretch
+    steps:
+      - attach_workspace:
+          at: /work
+      - run:
+          name: Setup curl
+          command: apt-get update && apt-get install -y curl ca-certificates
+      - run:
+          name: Send result to slack channel
+          command: >-
+            curl -X POST \
+              --data-urlencode \
+              "payload={\"channel\":\"#techbook-ci\", \
+                \"username\": \"テックブックBot\", \
+                \"text\": \"${CIRCLE_BRANCH}のビルドが成功しました。\\n以下のURLのARTIFACTSから確認できます。\\n $(cat result.txt | sed -r "s/$/\\\\n/")\", \
+                \"icon_emoji\": \":robot_face:\" \
+              }" \
+              https://hooks.slack.com/services/~~~
+
+workflows:
+  version: 2
+  build_and_notify:
+    jobs:
+      - lint
+      - build:
+          requires:
+            - lint
+      - notify_success:
+          requires:
+            - build
