@@ -1,1 +1,92 @@
 % for user-defined macro
+
+% セクションページのタイトルの余白削除
+\def\@makechapterhead#1{%
+  \vspace*{-1\Cvs}% 欧文は50pt
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\headfont \@chapapp\thechapter\@chappos
+        \par\nobreak
+        \vskip \Cvs % 欧文は20pt
+      \fi
+    \fi
+    \interlinepenalty\@M
+    \Huge \headfont #1\par\nobreak
+    \vskip 3\Cvs}} % 欧文は40pt
+
+% ヘッダーからセクション表示を削除
+\renewcommand{\sectionmark}[1]{}
+
+% ページ番号の中央寄せ
+%% 通常ページ
+\fancyfoot[LE,RO]{}
+\fancyfoot[C]{\thepage}
+
+%% チャプターページ
+\fancypagestyle{plainhead}{%
+\fancyhead{}
+\fancyfoot{} % clear all header and footer fields
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+% list, cmdのデザイン変更
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable}
+\renewenvironment{shaded}{
+  \vspace{\baselineskip}
+  \begin{tcolorbox}[breakable, enhanced jigsaw, colback=black!10!white, colframe=black!10!white, arc=1truemm, outer arc=1truemm]}
+  {\end{tcolorbox}}
+\renewenvironment{shadedb}{
+  \vspace{\baselineskip}
+  \begin{tcolorbox}[breakable, enhanced jigsaw, colback=black!80!white, colframe=black, colupper=white, sharp corners]}
+  {\end{tcolorbox}}
+
+% columnのデザイン変更
+\renewcommand{\reviewcolumnhead}[2]{%
+{\noindent\large ■#2}}
+
+\renewenvironment{reviewcolumn}[1][]{%
+    \vspace{\baselineskip}
+    \begin{tcolorbox}[breakable, colback=white, colframe=black!40!white, arc=1.5truemm, outer arc=1.8truemm, boxsep=5truemm]
+    \setlength{\parindent}{1zw}%
+    \reviewcolumnhead{}{#1}
+    \vspace{1zw}
+  }{%
+    \end{tcolorbox}
+    \vspace{\baselineskip}
+  }
+
+% [ad-hoc] a trick to put upstyle single quotes literally in PDF
+\begingroup
+\catcode`'=\active
+\catcode``=\active
+\g@addto@macro\@noligs{%
+  \def\review@tt@textquotesingle{{\fontfamily{\ttdefault}\textquotesingle}}%
+  \def\review@tt@textasciigrave{{\fontfamily{\ttdefault}\textasciigrave}}%
+  \let'\review@tt@textquotesingle
+  \let`\review@tt@textasciigrave}%
+\endgroup
+% jsbookのスタイルのオーバーライド
+% 見出しレベル5以上のときに見出しの後ろが改行されない問題を修正
+\if@twocolumn
+  \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+    {\z@}{.2\Cvs}% 改行有りに変更
+    {\normalfont\normalsize\headfont}}
+\else
+  \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+    {\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+    {.2\Cvs}% 改行有りに変更
+    {\normalfont\normalsize\headfont}}
+\fi
+\if@twocolumn
+  \renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
+    {\z@}{\z@}% 改行有りに変更
+    {\normalfont\normalsize\headfont\jsParagraphMark}}
+\else
+  \renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
+    {0.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+    {\z@}% 改行有りに変更
+    {\normalfont\normalsize\headfont\jsParagraphMark}}
+\fi

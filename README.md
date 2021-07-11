@@ -5,9 +5,9 @@
 
 # 参考情報
 
-- https://github.com/kmuto/review/
-- https://github.com/vvakame/docker-review
-- https://github.com/kmuto/review/blob/master/doc/format.ja.md
+- Re:VIEW: https://github.com/kmuto/review/
+- Re:VIEW image for Docker: https://github.com/vvakame/docker-review
+- Re:VIEW フォーマットガイド: https://github.com/kmuto/review/blob/master/doc/format.ja.md
 
 
 ## PDFビルド

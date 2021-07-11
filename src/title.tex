@@ -1,0 +1,22 @@
+% 自前タイトルページ追加
+% https://kyabe.net/blog/review-newline-arbitrary-position/
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}%
+\mbox{} \vskip5zw
+\reviewtitlefont%
+\vskip 15em%
+{\Huge\review@booktitlename\par}%
+\ifdefined\review@subtitlename
+\fi
+\vskip 2em%
+{\Large
+\lineskip .75em
+\begin{tabular}[t]{p{\textwidth}}%
+\centering{グループ執筆部}
+\end{tabular}\par}%
+\vfill
+{\large\review@date \review@intn@edition\hspace{1zw}\review@intn@publishedby\par}%
+\vskip2zw\mbox{}
+\end{center}%
+\end{titlepage}\clearpage

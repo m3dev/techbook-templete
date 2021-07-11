@@ -64,6 +64,24 @@ aut: ["techbook執筆部"]
 # a-trc, trc: 筆記・タイプ作業者
 # a-trl, trl: 翻訳者
 
+# デフォルトは以下。ths を追加。
+# https://github.com/kmuto/review/blob/72480f5930f54241067ac9493c0d98fbadf891d8/lib/review/configure.rb#L66
+colophon_order:
+  [
+    "aut",
+    "spn",
+    "ths",
+    "csl",
+    "trl",
+    "dsr",
+    "ill",
+    "cov",
+    "edt",
+    "pbl",
+    "contact",
+    "prt",
+  ]
+
 # 刊行日(省略した場合は実行時の日付)
 date: 2021-07-10
 # 発行年月。YYYY-MM-DD形式による配列指定。省略した場合はdateを使用する
@@ -73,6 +91,9 @@ date: 2021-07-10
 history: [["2021-07-10"]]
 # 権利表記(配列で複数指定可)
 # rights: (C) 2016-2019 Re:VIEW Developers
+
+rights: (C) 2021 執筆部
+
 # description: 説明
 # subject: 短い説明用タグ(配列で複数指定可)
 # type: 書籍のカテゴリーなど(配列で複数指定可)
@@ -125,10 +146,12 @@ toc: true
 coverimage: cover.png
 #
 # 表紙の後に大扉ページを作成するか。省略した場合はtrue (作成する)
-# titlepage: true
+titlepage: true
+
 #
 # 自動生成される大扉ページを上書きするファイル。ファイル名を指定すると大扉として入る (PDFMaker向けにはLaTeXソース断片、EPUBMaker向けにはHTMLファイル)
-# titlefile: null
+titlefile: title.tex
+
 #
 # 原書大扉ページにするファイル。ファイル名を指定すると原書大扉として入る (PDFMaker向けにはLaTeXソース断片、EPUBMaker向けにはHTMLファイル)
 # originaltitlefile: null
