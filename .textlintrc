@@ -7,7 +7,6 @@
         max: 240
       }
     },
-    "spellcheck-tech-word": false,
     "preset-japanese": true,
     "preset-jtf-style": true,
     "ja-technical-writing/max-kanji-continuous-len": false,
