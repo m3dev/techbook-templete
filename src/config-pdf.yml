@@ -1,0 +1,8 @@
+inherit: ["config.yml"]
+# media=ebook : pdf用設定
+texdocumentclass:
+  [
+    "review-jsbook",
+    "media=ebook, paper=b5, twoside, fontsize=10pt, head_space=28mm, number_of_lines=37, gutter=25mm, footskip=10mm, serial_pagination=true, cover=true",
+  ]
+#
