@@ -42,12 +42,18 @@ textlint のルールは `.textlintrc` でカスタマイズ可能です。
 - https://github.com/textlint-ja/textlint-rule-preset-japanese
 - https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing
 
-##
-
 ## PDF ビルド
 
-以下のコマンドで src 配下に pdf が生成されます
+以下のコマンドで src 配下にダウンロード販売用の PDF `techbook-pdf.pdf` が生成されます
 
 ```
-docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && review-pdfmaker config.yml"
+docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && review-pdfmaker config-pdf.yml"
+```
+
+## 入稿用データ ビルド
+
+以下のコマンドで src 配下に入稿用の PDF `techbook-paper.pdf` が生成されます
+
+```
+docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && review-pdfmaker config-paper.yml"
 ```
