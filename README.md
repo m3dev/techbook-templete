@@ -15,5 +15,5 @@
 以下のコマンドでsrc配下にpdfが生成されます
 
 ```
-docker run --rm -v $PWD/src:/work vvakame/review:5.1 /bin/sh -c "cd /work && review-pdfmaker config.yml"
+docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && review-pdfmaker config.yml"
 ```
