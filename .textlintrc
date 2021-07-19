@@ -2,10 +2,19 @@
   "rules": {
     "preset-ja-technical-writing": {
       "no-exclamation-question-mark": false,
+      "max-ten": false,
+      "sentence-length": {
+        max: 240
+      }
     },
-    "spellcheck-tech-word": true,
+    "spellcheck-tech-word": false,
     "preset-japanese": true,
     "preset-jtf-style": true,
+    "ja-technical-writing/max-kanji-continuous-len": false,
+    "japanese/sentence-length": {
+      max: 240
+    },
+    "japanese/max-ten": false
   },
   "filters": {
     "comments": true,
