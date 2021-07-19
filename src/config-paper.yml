@@ -7,5 +7,5 @@ inherit: ["config.yml"]
 texdocumentclass:
   [
     "review-jsbook",
-    "media=print, paper=b5, twoside, fontsize=10pt, head_space=28mm, number_of_lines=37, gutter=25mm, footskip=10mm, serial_pagination=true, hiddenfolio=nikko-pc, cover=false",
+    "media=print, paper=b5, twoside, fontsize=10pt, head_space=28mm, number_of_lines=37, gutter=27mm, footskip=10mm, serial_pagination=true, hiddenfolio=nikko-pc, cover=false",
   ]
