@@ -1,4 +1,5 @@
 inherit: ["config.yml"]
+bookname: techbook-pdf
 # media=ebook : pdf用設定
 texdocumentclass:
   [
