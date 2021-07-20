@@ -57,3 +57,25 @@ docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && rev
 ```
 docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && review-pdfmaker config-paper.yml"
 ```
+
+
+## 設定必要項目
+
+以下を必要に応じて設定します
+
+ - src/config.yml: pdf設定項目
+    - booktitle
+    - aut
+    - date
+    - history
+    - rights
+ - src/title.tex: 2ページ目タイトル
+ - src/catalog.yml: 以下のreファイルへのpath
+ - src/preface.re: まえがき
+ - src/postscript.re: あとがき
+ - src/contributors.re: 執筆者情報
+ - src/{foobar}.re: 各章の文章
+ - src/images/cover.png: 表紙画像
+ - src/images/{foobar}/{hoge}.png: foobar.reで利用される画像
+ - .circleci/config.yml: circleci設定
+    - `https://hooks.slack.com/services/~~~`: slack post用url
