@@ -4,9 +4,16 @@
 
 # 参考情報
 
+以下を参考に執筆する事をオススメします
+
 - Re:VIEW: https://github.com/kmuto/review/
 - Re:VIEW image for Docker: https://github.com/vvakame/docker-review
 - Re:VIEW フォーマットガイド: https://github.com/kmuto/review/blob/master/doc/format.ja.md
+
+以下のブログにもフォーマットの詳細を記載しています
+
+- 技術書典への参加から執筆の諸問題対応とテンプレート公開までの記録: https://www.m3tech.blog/entry/techbook_knowledge
+
 
 # 動作条件
 
