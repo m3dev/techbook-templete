@@ -2,6 +2,8 @@
 
 これはエムスリー株式会社の techbook 用テンプレートです。
 
+実際のエムスリーテックブックはこちら：https://techbookfest.org/organization/38290003
+
 # 参考情報
 
 以下を参考に執筆する事をオススメします
@@ -86,3 +88,4 @@ docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && rev
  - src/images/{foobar}/{hoge}.png: foobar.reで利用される画像
  - .circleci/config.yml: circleci設定
     - `https://hooks.slack.com/services/~~~`: slack post用url
+    - CircleCI側で `CIRCLE_BRANCH` , `CIRCLE_BUILD_URL` を設定する
