@@ -4,9 +4,16 @@
 
 # 参考情報
 
+以下を参考に執筆する事をオススメします
+
 - Re:VIEW: https://github.com/kmuto/review/
 - Re:VIEW image for Docker: https://github.com/vvakame/docker-review
 - Re:VIEW フォーマットガイド: https://github.com/kmuto/review/blob/master/doc/format.ja.md
+
+以下のブログにもフォーマットの詳細を記載しています
+
+- 技術書典への参加から執筆の諸問題対応とテンプレート公開までの記録: https://www.m3tech.blog/entry/techbook_knowledge
+
 
 # 動作条件
 
@@ -57,3 +64,25 @@ docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && rev
 ```
 docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && review-pdfmaker config-paper.yml"
 ```
+
+
+## 設定必要項目
+
+以下を必要に応じて設定します
+
+ - src/config.yml: pdf設定項目
+    - booktitle
+    - aut
+    - date
+    - history
+    - rights
+ - src/title.tex: 2ページ目タイトル
+ - src/catalog.yml: 以下のreファイルへのpath
+ - src/preface.re: まえがき
+ - src/postscript.re: あとがき
+ - src/contributors.re: 執筆者情報
+ - src/{foobar}.re: 各章の文章
+ - src/images/cover.png: 表紙画像
+ - src/images/{foobar}/{hoge}.png: foobar.reで利用される画像
+ - .circleci/config.yml: circleci設定
+    - `https://hooks.slack.com/services/~~~`: slack post用url
