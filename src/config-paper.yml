@@ -1,0 +1,12 @@
+inherit: ["config.yml"]
+bookname: techbook-paper
+# media=print : 印刷用にトンボを表示
+# cover=false : 表紙は印刷所側のテンプレを利用するため非表示
+# hiddenfolio=nikko-pc : 印刷所ごとに隠しノンブルの設定を変更(nikko-pc = 日光企画, marusho-ink = 丸正インキ, shippo = ねこのしっぽ)
+# 詳細は以下を参照
+# https://review-knowledge-ja.readthedocs.io/ja/latest/latex/review3-latex.html#296393b6ba6b0a3a20c6fe2f717e73f2
+texdocumentclass:
+  [
+    "review-jsbook",
+    "media=print, paper=b5, twoside, fontsize=10pt, head_space=28mm, number_of_lines=37, gutter=27mm, footskip=10mm, serial_pagination=true, hiddenfolio=nikko-pc, cover=false",
+  ]

@@ -1,6 +1,7 @@
 *.pdf
 .DS_Store
-src/techbook-pdf
+src/techbook-paper-pdf
+src/techbook-pdf-pdf
 
 # Created by https://www.gitignore.io/api/python,node,osx
 # Edit at https://www.gitignore.io/?templates=python,node,osx

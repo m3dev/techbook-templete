@@ -1,7 +1,6 @@
-# README 
+# README
 
-これはエムスリー株式会社のtechbook用テンプレートです。
-
+これはエムスリー株式会社の techbook 用テンプレートです。
 
 # 参考情報
 
@@ -9,11 +8,52 @@
 - Re:VIEW image for Docker: https://github.com/vvakame/docker-review
 - Re:VIEW フォーマットガイド: https://github.com/kmuto/review/blob/master/doc/format.ja.md
 
+# 動作条件
 
-## PDFビルド
+- Node.js
+- Docker
 
-以下のコマンドでsrc配下にpdfが生成されます
+# 事前準備
+
+本プロジェクトでは文章校正ツールとして textlint を使用しています。
+関連パッケージをインストールするため、ルートディレクトリで以下コマンドを実行します。
 
 ```
-docker run --rm -v $PWD/src:/work vvakame/review:5.1 /bin/sh -c "cd /work && review-pdfmaker config.yml"
+yarn install
+```
+
+# textlint
+
+textlint の結果を出力するには、ルートディレクトリで以下のコマンドを実行します。
+
+```
+npx textlint src/*.re
+```
+
+また、以下のようにファイル名を個別に指定して実行することも可能です。
+
+```
+npx textlint src/postscript.re
+```
+
+textlint のルールは `.textlintrc` でカスタマイズ可能です。
+各ルールセットの詳細は下記リンクを参照してください。
+
+- https://github.com/textlint-ja/textlint-rule-preset-japanese
+- https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing
+
+## PDF ビルド
+
+以下のコマンドで src 配下にダウンロード販売用の PDF `techbook-pdf.pdf` が生成されます
+
+```
+docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && review-pdfmaker config-pdf.yml"
+```
+
+## 入稿用データ ビルド
+
+以下のコマンドで src 配下に入稿用の PDF `techbook-paper.pdf` が生成されます
+
+```
+docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && review-pdfmaker config-paper.yml"
 ```

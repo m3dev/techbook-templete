@@ -3,7 +3,7 @@ jobs:
   lint:
     working_directory: /work
     docker:
-      - image: node:10
+      - image: node:14
     steps:
       - checkout
       - run:
@@ -31,7 +31,7 @@ jobs:
   build:
     working_directory: /work
     docker:
-      - image: vvakame/review:5.1
+      - image: vvakame/review:5.2
     steps:
       - checkout
       - attach_workspace:
