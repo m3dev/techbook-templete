@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 16
       - name: Setup Node Packages
-        run: yarn --frozen-lockfile
+        run: npm ci
       - name: Textlint
         continue-on-error: true
         run: npx textlint **/*.re 2>&1
