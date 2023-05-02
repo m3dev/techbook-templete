@@ -28,7 +28,7 @@
 関連パッケージをインストールするため、ルートディレクトリで以下コマンドを実行します。
 
 ```
-yarn install
+npm install
 ```
 
 # textlint
