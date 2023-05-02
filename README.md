@@ -19,7 +19,7 @@
 
 # 動作条件
 
-- Node.js
+- Node.js 16
 - Docker
 
 # 事前準備
@@ -56,7 +56,7 @@ textlint のルールは `.textlintrc` でカスタマイズ可能です。
 以下のコマンドで src 配下にダウンロード販売用の PDF `techbook-pdf.pdf` が生成されます
 
 ```
-docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && review-pdfmaker config-pdf.yml"
+docker run --rm -v $PWD/src:/work vvakame/review:5.7 /bin/sh -c "cd /work && review-pdfmaker config-pdf.yml"
 ```
 
 ## 入稿用データ ビルド
@@ -64,7 +64,7 @@ docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && rev
 以下のコマンドで src 配下に入稿用の PDF `techbook-paper.pdf` が生成されます
 
 ```
-docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && review-pdfmaker config-paper.yml"
+docker run --rm -v $PWD/src:/work vvakame/review:5.7 /bin/sh -c "cd /work && review-pdfmaker config-paper.yml"
 ```
 
 
@@ -86,6 +86,6 @@ docker run --rm -v $PWD/src:/work vvakame/review:5.2 /bin/sh -c "cd /work && rev
  - src/{foobar}.re: 各章の文章
  - src/images/cover.png: 表紙画像
  - src/images/{foobar}/{hoge}.png: foobar.reで利用される画像
- - .circleci/config.yml: circleci設定
-    - `https://hooks.slack.com/services/~~~`: slack post用url
-    - CircleCI側で `CIRCLE_BRANCH` , `CIRCLE_BUILD_URL` を設定する
+ - .github/workflows/ci.yml: GitHub Actions設定
+    - secrets.SLACK_INCOMING_WEBHOOK: slack post用url
+    - secrets.SLACK_INCOMING_CHANNEL: slack post先チャンネル名(ex: "#techbook-ci")
